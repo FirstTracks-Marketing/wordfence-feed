@@ -27,7 +27,7 @@ reinvented per repo and going stale. Install the plugin and the skills load on d
 
 ```bash
 claude plugin marketplace add FirstTracks-Marketing/llm
-claude plugin install ftm-wordpress@ftm
+claude plugin install ftm-estate@ftm
 ```
 
 | Skill | For |
