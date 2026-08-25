@@ -1,39 +1,41 @@
 # `wordfence-feed`
 
-A FirstTracks shared tool. It lives at `~/dev/ftm/tools/wordfence-feed` because the layout follows the
-repo topics — see `~/dev/CLAUDE.md`.
+This repository publishes the shared Wordfence CLI vulnerability feed used by
+the FirstTracks site fleet. It is an artifact repository: the source tree is
+intentionally just documentation and the rolling release asset.
 
-> ℹ️ **This file is a measured scaffold, not authored context.** Every statement below was
-> read out of this repo by `llm/bin/scaffold-context` on 2026-08-14. Nothing here was written by
-> someone who knows the repo, so it says what is *true* rather than what *matters* —
-> the constraint that keeps a generated file from being confidently wrong.
->
-> **Replace it.** The thing worth adding is what a colleague would have to tell you and
-> could not read off the filesystem: what this does, what breaks, what to be careful of.
-> When you do, delete this note — and keep `CLAUDE.md` a symlink to this file rather than
-> editing it, or the copies diverge (`llm/bin/emit-context`, `llm/bin/context-audit`).
+## What changes here affect
 
-## What was measured
+- The release named `wordfence-feed` must publish
+	`vulnerability_index_production.gz`.
+- Fleet maintenance downloads that asset anonymously and places it in the
+	Wordfence CLI cache before running `wordfence vuln-scan`.
+- A missing or unusable asset is not harmless. Consumers fall back to a direct
+	Wordfence Intelligence download, which restores correctness but loses the
+	rate-limit protection this repository exists to provide.
+- The feed is public vulnerability data. Do not add credentials, customer data,
+	site exports, or private operational details here.
 
-| | |
-| --- | --- |
-| WPCS | **not a declared dependency** |
-| PHPCS ruleset | **none in this repo** |
+## Safe workflow
 
-## Where the standards live
+- Read `README.md` before changing the artifact name, release tag, or consumer
+	URL. Those are cross-repository contracts with `github-actions` and the site
+	maintenance action.
+- Do not add a checked-in copy of the large feed. Its producer in
+	`github-actions` fetches and publishes it on the daily schedule.
+- Treat release and workflow changes as fleet-facing changes. A green diff is
+	not proof that a consuming site can download or use the asset.
+- Do not test by forcing a fleet scan or by making direct Wordfence API calls.
+	Those operations belong to the producer and consumer workflows.
 
-This repo does not carry FTM working standards; they are shared, because they were being
-reinvented per repo and going stale. Install the plugin and the skills load on demand:
+## Validation
 
-```bash
-claude plugin marketplace add FirstTracks-Marketing/llm
-claude plugin install ftm-estate@ftm
-```
+- Run `git diff --check` for documentation or metadata changes.
+- Confirm the release asset name and download URL still match `README.md` and
+	the consumer workflow before merging.
+- For changes to the publishing workflow or asset contract, validate the
+	corresponding `github-actions` workflow and a single consumer path through
+	its normal CI; report that integration as unverified if it was not run.
 
-| Skill | For |
-| --- | --- |
-| `wp-repo-survey` | What generation this repo is at, before changing it |
-| `wp-coding-standards` | Finding this repo's lint command, and wiring PHPCS where it is missing |
-
-Estate-wide rules — worktrees, commit conventions, the fleet's hazards — are in
-`~/dev/CLAUDE.md`, which loads automatically anywhere under `~/dev`.
+There is no local application test suite in this repository. Do not invent one
+that pretends to validate the remote release or the Wordfence service.
