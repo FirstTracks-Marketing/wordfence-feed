@@ -1,0 +1,84 @@
+name: "⚖️ Decision work item"
+description: A consequential question that needs evidence and an explicit human decision.
+title: "decision: <question>"
+body:
+  - type: markdown
+    attributes:
+      value: |
+        Use this form when the evidence is available but the required outcome is not settled.
+
+        Someone familiar with the repository should understand the issue by reading **TL;DR**, **Question**, **Options and constraints**, and **Done when**. This form records the decision; it does not ask an implementer to make it implicitly.
+
+  - type: textarea
+    id: tldr
+    attributes:
+      label: TL;DR
+      description: In one to three current sentences, state the decision, why it matters, and what it blocks. Do not copy the title or include numbers you have not just measured.
+      placeholder: We need to decide… The choice affects… This currently blocks…
+    validations:
+      required: true
+
+  - type: textarea
+    id: question
+    attributes:
+      label: Question
+      description: Ask the decision as one direct question and name the scope it governs.
+      placeholder: Should…?
+    validations:
+      required: true
+
+  - type: textarea
+    id: evidence
+    attributes:
+      label: Evidence
+      description: Add the commands, measurements, examples, links, and dates that make the decision necessary. Separate observed facts from interpretations.
+      placeholder: |
+        Observed:
+        ```
+        command and output
+        ```
+
+        Interpretation:
+    validations:
+      required: true
+
+  - type: textarea
+    id: options-constraints
+    attributes:
+      label: Options and constraints
+      description: List viable options, important tradeoffs, blast radius, rollback constraints, and any option already ruled out by evidence.
+      placeholder: |
+        1. Option — tradeoff
+        2. Option — tradeoff
+    validations:
+      required: true
+
+  - type: textarea
+    id: recommendation
+    attributes:
+      label: Current recommendation
+      description: State the evidence-backed recommendation, or write "No recommendation yet" and name the missing evidence.
+      placeholder: Recommend… because…
+    validations:
+      required: true
+
+  - type: textarea
+    id: done-when
+    attributes:
+      label: Done when
+      description: State how the decision will be recorded and what implementation work, if any, should be filed after it.
+      value: |
+        - [ ] The decision and rationale are recorded.
+        - [ ] Follow-up implementation work is filed or explicitly declined.
+    validations:
+      required: true
+
+  - type: textarea
+    id: out-of-scope
+    attributes:
+      label: Out of scope
+      description: Name adjacent decisions or implementation work this issue does not settle. Write "None" when appropriate.
+      placeholder: This decision does not determine…
+    validations:
+      required: true
+
