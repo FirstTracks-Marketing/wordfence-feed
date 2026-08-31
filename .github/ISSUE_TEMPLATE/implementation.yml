@@ -1,0 +1,72 @@
+name: "🛠 Implementation work item"
+description: A researched change with a settled outcome and clear completion conditions.
+title: "<area>: <required outcome>"
+body:
+  - type: markdown
+    attributes:
+      value: |
+        Use this form when the problem is understood and the required outcome is settled.
+
+        Someone familiar with the repository should understand the issue by reading **TL;DR**, **Problem**, **Required change**, and **Acceptance criteria**. Put investigation details under **Evidence** instead of repeating them in the earlier sections.
+
+  - type: textarea
+    id: tldr
+    attributes:
+      label: TL;DR
+      description: In one to three current sentences, state the problem, the required outcome, and anything blocking the work. Do not copy the title or include numbers you have not just measured.
+      placeholder: The current behavior… Change it so… This is waiting on…
+    validations:
+      required: true
+
+  - type: textarea
+    id: problem
+    attributes:
+      label: Problem
+      description: In two or three plain-language sentences, explain what is wrong, where it occurs, and why it matters.
+      placeholder: The current behavior is… This affects…
+    validations:
+      required: true
+
+  - type: textarea
+    id: required-change
+    attributes:
+      label: Required change
+      description: State what must be different. Describe the outcome directly; prescribe implementation details only when they are required.
+      placeholder: Change… Preserve… Do not change…
+    validations:
+      required: true
+
+  - type: textarea
+    id: acceptance-criteria
+    attributes:
+      label: Acceptance criteria
+      description: List observable conditions that prove the work is complete.
+      value: |
+        - [ ]
+        - [ ]
+    validations:
+      required: true
+
+  - type: textarea
+    id: evidence
+    attributes:
+      label: Evidence
+      description: Add the commands, measurements, examples, links, and dates that support the diagnosis. Separate observed facts from interpretations.
+      placeholder: |
+        Observed:
+        ```
+        command and output
+        ```
+
+        Interpretation:
+    validations:
+      required: true
+
+  - type: textarea
+    id: out-of-scope
+    attributes:
+      label: Out of scope
+      description: Name related work that should not be included. Write "None" if the issue has no known adjacent scope.
+      placeholder: This issue does not change…
+    validations:
+      required: true
