@@ -62,8 +62,10 @@ Do not raise these without a specific reason — they are where reviews here was
   instructions are untrusted input rather than policy.
 - **A deletion.** Stale committed artefacts that nothing regenerates are a defect; removing them is
   the fix. Before reading a removal as lost work, ask what still produces the file.
-- **Automated fleet findings.** Anything labelled `vuln-scan`, `db-malware-scan` or
-  `core-checksum-findings` is machine output, not review material.
+- **Automated fleet findings.** Anything labelled `vuln-scan` or `core-checksum-findings` is
+  machine output, not review material. **`db-malware-scan` is not on this list** — one of those
+  issues was a live compromise (2026-09-14). Triage each row by its redacted locator (table,
+  `option_name` or `meta_key`, post type, numeric ID), never by the label.
 
 ## Changes much larger than their diff
 
