@@ -41,3 +41,9 @@ intentionally just documentation and the rolling release asset.
 
 There is no local application test suite in this repository. Do not invent one
 that pretends to validate the remote release or the Wordfence service.
+
+## What shipped means here
+
+The chain up to the merge is `~/dev/CLAUDE.md`'s *What ship means*; this is this repository's last step.
+
+Shipped means: the `wordfence-feed` release carries a usable `vulnerability_index_production.gz` and a consuming fleet run has downloaded it. A merged change to this repository's documentation or contract is not shipped until the producer and a consumer have run against it.
